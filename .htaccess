@@ -1,0 +1,18 @@
+# Remove .html extension
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
+
+# Redirect /index.html to /
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Ensure proper content type for .html files
+AddType text/html .html
+
+# Set default character set
+AddDefaultCharset UTF-8
+
+# Enable custom error pages (optional)
+ErrorDocument 404 /404.html 
